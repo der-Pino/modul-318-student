@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SwissTransport.Core;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,24 @@ using System.Windows.Forms;
 
 namespace Transportapp
 {
-    public partial class Form1 : Form
+    public partial class Programmfenster : Form
     {
-        public Form1()
+        ITransport transport = new Transport();
+        public Programmfenster()
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Suchen_Click(object sender, EventArgs e)
+        {
+            List<SwissTransport.Models.Connection> conn = transport.GetConnections(AbfahrtSuche.Text, ZielSuche.Text).ConnectionList;
+            //testbox.Text = conn;
+        }
+
     }
 }
