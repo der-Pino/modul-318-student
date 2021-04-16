@@ -160,8 +160,28 @@ namespace Transportapp
             }
             catch 
             {
-               
+               Abfahrtstafel.Rows.Clear();
+               Stationsvorschlage.Items.Clear();
+               Stationsvorschlage.Items.Add("Station nicht gefunden");
             }
+        }
+
+        private void helpbtn_Click(object sender, EventArgs e)
+        {
+            ToolTip buttonToolTip = new ToolTip
+            {
+                ToolTipTitle = "Hilfe",
+                UseFading = true,
+                UseAnimation = false,
+                IsBalloon = true,
+                ShowAlways = true,
+                AutoPopDelay = 5000,
+                ReshowDelay = 500
+            };
+
+
+
+            buttonToolTip.SetToolTip(SucheClear, "hilfe");
         }
     }
 }

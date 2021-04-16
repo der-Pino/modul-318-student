@@ -57,6 +57,7 @@ namespace Transportapp
             this.Abfahrtszeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AnkunftsZiel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StationsSuche = new System.Windows.Forms.TextBox();
+            this.helpbtn = new System.Windows.Forms.Button();
             this.VerbindungssucheTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerbindungsListe)).BeginInit();
             this.ansichtswitch.SuspendLayout();
@@ -69,6 +70,7 @@ namespace Transportapp
             // VerbindungssucheTab
             // 
             this.VerbindungssucheTab.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.VerbindungssucheTab.Controls.Add(this.helpbtn);
             this.VerbindungssucheTab.Controls.Add(this.Zielortvorschlag);
             this.VerbindungssucheTab.Controls.Add(this.Abfahrtvorschlag);
             this.VerbindungssucheTab.Controls.Add(this.SucheTausch);
@@ -350,6 +352,18 @@ namespace Transportapp
             this.StationsSuche.Text = "Station";
             this.StationsSuche.TextChanged += new System.EventHandler(this.StationsSuche_TextChanged);
             // 
+            // helpbtn
+            // 
+            this.helpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpbtn.Location = new System.Drawing.Point(547, 0);
+            this.helpbtn.Name = "helpbtn";
+            this.helpbtn.Size = new System.Drawing.Size(89, 24);
+            this.helpbtn.TabIndex = 2;
+            this.helpbtn.Text = "Hilfe ?";
+            this.helpbtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpbtn.UseVisualStyleBackColor = true;
+            this.helpbtn.Click += new System.EventHandler(this.helpbtn_Click);
+            // 
             // Programmfenster
             // 
             this.AcceptButton = this.Suchen;
@@ -400,6 +414,7 @@ namespace Transportapp
         private System.Windows.Forms.DataGridViewTextBoxColumn AnkunftsZiel;
         private System.Windows.Forms.ListBox Zielortvorschlag;
         private System.Windows.Forms.ListBox Abfahrtvorschlag;
+        private System.Windows.Forms.Button helpbtn;
     }
 }
 
