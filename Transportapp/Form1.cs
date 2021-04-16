@@ -1,6 +1,7 @@
 ﻿using SwissTransport.Core;
 using SwissTransport.Models;
 using System;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 namespace Transportapp
@@ -15,11 +16,25 @@ namespace Transportapp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+           
+        }
 
+        public void netzwerktest() 
+        {
+            try
+            {
+                Ping ping = new Ping();
+                PingReply reply = ping.Send("transport.opendata.ch");
+            }
+            catch
+            {
+                MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void Suchen_Click(object sender, EventArgs e)
         {
+            netzwerktest();
             try
             {
                 VerbindungsListe.Rows.Clear();
@@ -60,6 +75,7 @@ namespace Transportapp
 
         private void StationsSuche_TextChanged(object sender, EventArgs e)
         {
+            netzwerktest();
             if (!string.IsNullOrEmpty(StationsSuche.Text))
             {
                 Stationsvorschlage.Items.Clear();
@@ -95,6 +111,7 @@ namespace Transportapp
 
         private void AbfahrtSuche_TextChanged(object sender, EventArgs e)
         {
+            netzwerktest();
             if (!string.IsNullOrEmpty(AbfahrtSuche.Text))
             {
                 Abfahrtvorschlag.Items.Clear();
@@ -119,6 +136,7 @@ namespace Transportapp
 
         private void ZielSuche_TextChanged(object sender, EventArgs e)
         {
+            netzwerktest();
             if (!string.IsNullOrEmpty(ZielSuche.Text))
             {
                 Zielortvorschlag.Items.Clear();
@@ -143,6 +161,7 @@ namespace Transportapp
 
         private void StationSuchen_Click(object sender, EventArgs e)
         {
+            netzwerktest();
             try
             {
                 string statid = transport.GetStations(StationsSuche.Text).StationList[0].Id;
