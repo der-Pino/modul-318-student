@@ -29,11 +29,12 @@ namespace Transportapp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.VerbindungssucheTab = new System.Windows.Forms.GroupBox();
+            this.helpbtn = new System.Windows.Forms.Button();
             this.Zielortvorschlag = new System.Windows.Forms.ListBox();
             this.Abfahrtvorschlag = new System.Windows.Forms.ListBox();
             this.SucheTausch = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@ namespace Transportapp
             this.Abfahrtszeit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AnkunftsZiel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StationsSuche = new System.Windows.Forms.TextBox();
-            this.helpbtn = new System.Windows.Forms.Button();
             this.VerbindungssucheTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VerbindungsListe)).BeginInit();
             this.ansichtswitch.SuspendLayout();
@@ -86,6 +86,18 @@ namespace Transportapp
             this.VerbindungssucheTab.TabIndex = 0;
             this.VerbindungssucheTab.TabStop = false;
             this.VerbindungssucheTab.Text = "Verbindungen Suchen";
+            // 
+            // helpbtn
+            // 
+            this.helpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpbtn.Location = new System.Drawing.Point(547, 0);
+            this.helpbtn.Name = "helpbtn";
+            this.helpbtn.Size = new System.Drawing.Size(89, 24);
+            this.helpbtn.TabIndex = 2;
+            this.helpbtn.Text = "Hilfe ?";
+            this.helpbtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.helpbtn.UseVisualStyleBackColor = true;
+            this.helpbtn.Click += new System.EventHandler(this.helpbtn_Click);
             // 
             // Zielortvorschlag
             // 
@@ -158,8 +170,8 @@ namespace Transportapp
             // 
             // VonSpalte
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VonSpalte.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VonSpalte.DefaultCellStyle = dataGridViewCellStyle1;
             this.VonSpalte.HeaderText = "Von";
             this.VonSpalte.MinimumWidth = 6;
             this.VonSpalte.Name = "VonSpalte";
@@ -167,8 +179,8 @@ namespace Transportapp
             // 
             // AbfahrtSpalte
             // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AbfahrtSpalte.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AbfahrtSpalte.DefaultCellStyle = dataGridViewCellStyle2;
             this.AbfahrtSpalte.HeaderText = "Abfahrt";
             this.AbfahrtSpalte.MinimumWidth = 6;
             this.AbfahrtSpalte.Name = "AbfahrtSpalte";
@@ -176,8 +188,8 @@ namespace Transportapp
             // 
             // BisSpalte
             // 
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BisSpalte.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BisSpalte.DefaultCellStyle = dataGridViewCellStyle3;
             this.BisSpalte.HeaderText = "Bis";
             this.BisSpalte.MinimumWidth = 6;
             this.BisSpalte.Name = "BisSpalte";
@@ -185,8 +197,8 @@ namespace Transportapp
             // 
             // AnkunftSpalte
             // 
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnkunftSpalte.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnkunftSpalte.DefaultCellStyle = dataGridViewCellStyle4;
             this.AnkunftSpalte.HeaderText = "Ankunft";
             this.AnkunftSpalte.MinimumWidth = 6;
             this.AnkunftSpalte.Name = "AnkunftSpalte";
@@ -352,25 +364,13 @@ namespace Transportapp
             this.StationsSuche.Text = "Station";
             this.StationsSuche.TextChanged += new System.EventHandler(this.StationsSuche_TextChanged);
             // 
-            // helpbtn
-            // 
-            this.helpbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.helpbtn.Location = new System.Drawing.Point(547, 0);
-            this.helpbtn.Name = "helpbtn";
-            this.helpbtn.Size = new System.Drawing.Size(89, 24);
-            this.helpbtn.TabIndex = 2;
-            this.helpbtn.Text = "Hilfe ?";
-            this.helpbtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.helpbtn.UseVisualStyleBackColor = true;
-            this.helpbtn.Click += new System.EventHandler(this.helpbtn_Click);
-            // 
             // Programmfenster
             // 
             this.AcceptButton = this.Suchen;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1101, 710);
+            this.ClientSize = new System.Drawing.Size(688, 710);
             this.Controls.Add(this.ansichtswitch);
             this.Name = "Programmfenster";
             this.Text = "MyTransport";

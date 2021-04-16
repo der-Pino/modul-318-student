@@ -71,10 +71,8 @@ namespace Transportapp
                     { 
                     Stationsvorschlage.Items.Add(station.Name);
                     }
-
                 }
-            }
-           
+            } 
         }
 
      
@@ -170,7 +168,7 @@ namespace Transportapp
         {
             ToolTip buttonToolTip = new ToolTip
             {
-                ToolTipTitle = "Hilfe",
+                ToolTipTitle = "Beschreibung",
                 UseFading = true,
                 UseAnimation = false,
                 IsBalloon = true,
@@ -180,8 +178,15 @@ namespace Transportapp
             };
 
 
+            buttonToolTip.SetToolTip(helpbtn,"Wenn Sie über gewisse Elemente fahren, wird eine kleine Information angezeigt.");
+            buttonToolTip.SetToolTip(SucheTausch, "Hier werden Abfahrt und Ziel-ort vertauscht.");
+            buttonToolTip.SetToolTip(Suchen, "Hier werden Verbindungen gesucht und unten Angezeigt.");
+            buttonToolTip.SetToolTip(ansichtswitch.TabPages[1].Parent, "Hier kann man zwischen Verbindungssuche und Abfahrtstafel wechseln.");
+            buttonToolTip.SetToolTip(SucheClear, "Eingabe Löschen");
+            buttonToolTip.SetToolTip(StationClear, "Eingabe Löschen");
+            buttonToolTip.SetToolTip(Stationsvorschlage, "Hier werden Stationsvorschläge angezeigt");
 
-            buttonToolTip.SetToolTip(SucheClear, "hilfe");
+
         }
     }
 }
