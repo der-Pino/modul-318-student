@@ -34,6 +34,9 @@ namespace Transportapp
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.VerbindungssucheTab = new System.Windows.Forms.GroupBox();
+            this.zielortlabel = new System.Windows.Forms.Label();
+            this.abfahrtlabel = new System.Windows.Forms.Label();
+            this.neustartbtn = new System.Windows.Forms.Button();
             this.helpbtn = new System.Windows.Forms.Button();
             this.Zielortvorschlag = new System.Windows.Forms.ListBox();
             this.Abfahrtvorschlag = new System.Windows.Forms.ListBox();
@@ -51,6 +54,7 @@ namespace Transportapp
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.AbfahrtenTab = new System.Windows.Forms.GroupBox();
+            this.stationlabel = new System.Windows.Forms.Label();
             this.Stationsvorschlage = new System.Windows.Forms.ListBox();
             this.StationSuchen = new System.Windows.Forms.Button();
             this.StationClear = new System.Windows.Forms.Button();
@@ -70,6 +74,9 @@ namespace Transportapp
             // VerbindungssucheTab
             // 
             this.VerbindungssucheTab.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.VerbindungssucheTab.Controls.Add(this.zielortlabel);
+            this.VerbindungssucheTab.Controls.Add(this.abfahrtlabel);
+            this.VerbindungssucheTab.Controls.Add(this.neustartbtn);
             this.VerbindungssucheTab.Controls.Add(this.helpbtn);
             this.VerbindungssucheTab.Controls.Add(this.Zielortvorschlag);
             this.VerbindungssucheTab.Controls.Add(this.Abfahrtvorschlag);
@@ -86,6 +93,37 @@ namespace Transportapp
             this.VerbindungssucheTab.TabIndex = 0;
             this.VerbindungssucheTab.TabStop = false;
             this.VerbindungssucheTab.Text = "Verbindungen Suchen";
+            // 
+            // zielortlabel
+            // 
+            this.zielortlabel.AutoSize = true;
+            this.zielortlabel.Location = new System.Drawing.Point(287, 25);
+            this.zielortlabel.Name = "zielortlabel";
+            this.zielortlabel.Size = new System.Drawing.Size(67, 24);
+            this.zielortlabel.TabIndex = 10;
+            this.zielortlabel.Text = "Zielort:";
+            this.zielortlabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // abfahrtlabel
+            // 
+            this.abfahrtlabel.AutoSize = true;
+            this.abfahrtlabel.Location = new System.Drawing.Point(19, 25);
+            this.abfahrtlabel.Name = "abfahrtlabel";
+            this.abfahrtlabel.Size = new System.Drawing.Size(104, 24);
+            this.abfahrtlabel.TabIndex = 9;
+            this.abfahrtlabel.Text = "Abfahrtsort:";
+            this.abfahrtlabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // neustartbtn
+            // 
+            this.neustartbtn.Location = new System.Drawing.Point(233, 381);
+            this.neustartbtn.Name = "neustartbtn";
+            this.neustartbtn.Size = new System.Drawing.Size(131, 36);
+            this.neustartbtn.TabIndex = 2;
+            this.neustartbtn.Text = "Neustart";
+            this.neustartbtn.UseVisualStyleBackColor = true;
+            this.neustartbtn.Visible = false;
+            this.neustartbtn.Click += new System.EventHandler(this.neustartbtn_Click);
             // 
             // helpbtn
             // 
@@ -222,7 +260,6 @@ namespace Transportapp
             this.ZielSuche.Name = "ZielSuche";
             this.ZielSuche.Size = new System.Drawing.Size(219, 24);
             this.ZielSuche.TabIndex = 1;
-            this.ZielSuche.Text = "Zielort";
             this.ZielSuche.TextChanged += new System.EventHandler(this.ZielSuche_TextChanged);
             // 
             // AbfahrtSuche
@@ -232,7 +269,6 @@ namespace Transportapp
             this.AbfahrtSuche.Name = "AbfahrtSuche";
             this.AbfahrtSuche.Size = new System.Drawing.Size(219, 24);
             this.AbfahrtSuche.TabIndex = 0;
-            this.AbfahrtSuche.Text = "Abfahrtsort";
             this.AbfahrtSuche.TextChanged += new System.EventHandler(this.AbfahrtSuche_TextChanged);
             // 
             // ansichtswitch
@@ -270,6 +306,7 @@ namespace Transportapp
             // AbfahrtenTab
             // 
             this.AbfahrtenTab.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.AbfahrtenTab.Controls.Add(this.stationlabel);
             this.AbfahrtenTab.Controls.Add(this.Stationsvorschlage);
             this.AbfahrtenTab.Controls.Add(this.StationSuchen);
             this.AbfahrtenTab.Controls.Add(this.StationClear);
@@ -282,6 +319,15 @@ namespace Transportapp
             this.AbfahrtenTab.TabIndex = 7;
             this.AbfahrtenTab.TabStop = false;
             this.AbfahrtenTab.Text = "Abfahrten";
+            // 
+            // stationlabel
+            // 
+            this.stationlabel.AutoSize = true;
+            this.stationlabel.Location = new System.Drawing.Point(95, 62);
+            this.stationlabel.Name = "stationlabel";
+            this.stationlabel.Size = new System.Drawing.Size(71, 24);
+            this.stationlabel.TabIndex = 9;
+            this.stationlabel.Text = "Station:";
             // 
             // Stationsvorschlage
             // 
@@ -361,7 +407,6 @@ namespace Transportapp
             this.StationsSuche.Name = "StationsSuche";
             this.StationsSuche.Size = new System.Drawing.Size(255, 24);
             this.StationsSuche.TabIndex = 0;
-            this.StationsSuche.Text = "Station";
             this.StationsSuche.TextChanged += new System.EventHandler(this.StationsSuche_TextChanged);
             // 
             // Programmfenster
@@ -373,6 +418,7 @@ namespace Transportapp
             this.ClientSize = new System.Drawing.Size(688, 710);
             this.Controls.Add(this.ansichtswitch);
             this.Name = "Programmfenster";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyTransport";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.VerbindungssucheTab.ResumeLayout(false);
@@ -415,6 +461,10 @@ namespace Transportapp
         private System.Windows.Forms.ListBox Zielortvorschlag;
         private System.Windows.Forms.ListBox Abfahrtvorschlag;
         private System.Windows.Forms.Button helpbtn;
+        private System.Windows.Forms.Button neustartbtn;
+        private System.Windows.Forms.Label stationlabel;
+        private System.Windows.Forms.Label zielortlabel;
+        private System.Windows.Forms.Label abfahrtlabel;
     }
 }
 

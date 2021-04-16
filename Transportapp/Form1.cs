@@ -1,6 +1,7 @@
 ﻿using SwissTransport.Core;
 using SwissTransport.Models;
 using System;
+using System.Net;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
@@ -13,28 +14,50 @@ namespace Transportapp
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-           
-        }
-
-        public void netzwerktest() 
+        public bool netzwerktest()
         {
             try
             {
                 Ping ping = new Ping();
                 PingReply reply = ping.Send("transport.opendata.ch");
+                return true;
             }
-            catch
+            catch 
             {
                 MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+        }
+        private void DisableControls(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                DisableControls(c);
+            }
+            con.Enabled = false;
+        }
+        private void EnableControls(Control con)
+        {
+            if (con != null)
+            {
+                con.Enabled = true;
+                EnableControls(con.Parent);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (!netzwerktest()) 
+            {
+                DisableControls(this);
+                EnableControls(neustartbtn);
+                neustartbtn.Visible = true;
             }
         }
 
         private void Suchen_Click(object sender, EventArgs e)
         {
-            netzwerktest();
+            
             try
             {
                 VerbindungsListe.Rows.Clear();
@@ -50,8 +73,7 @@ namespace Transportapp
             }
             catch 
             {
-                ZielSuche.Text = "Zielort";
-                AbfahrtSuche.Text = "Abfahrtsort";
+                MessageBox.Show("Konnte nicht gesucht werden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -75,18 +97,28 @@ namespace Transportapp
 
         private void StationsSuche_TextChanged(object sender, EventArgs e)
         {
-            netzwerktest();
             if (!string.IsNullOrEmpty(StationsSuche.Text))
             {
-                Stationsvorschlage.Items.Clear();
-                Stations vorschlag = transport.GetStations(StationsSuche.Text);
-
-                foreach (Station station in vorschlag.StationList)
+                try
                 {
-                    if (!string.IsNullOrEmpty(station.Name))
-                    { 
-                    Stationsvorschlage.Items.Add(station.Name);
+                    Stationsvorschlage.Items.Clear();
+                    Stations vorschlag = transport.GetStations(StationsSuche.Text);
+
+                    foreach (Station station in vorschlag.StationList)
+                    {
+                        if (!string.IsNullOrEmpty(station.Name))
+                        {
+                            Stationsvorschlage.Items.Add(station.Name);
+                        }
                     }
+                }
+                catch (WebException)
+                {
+                    MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch 
+                {
+                    MessageBox.Show("Konnte nicht gesucht werden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             } 
         }
@@ -111,19 +143,30 @@ namespace Transportapp
 
         private void AbfahrtSuche_TextChanged(object sender, EventArgs e)
         {
-            netzwerktest();
+            
             if (!string.IsNullOrEmpty(AbfahrtSuche.Text))
             {
-                Abfahrtvorschlag.Items.Clear();
-                Stations vorschlag = transport.GetStations(AbfahrtSuche.Text);
-
-                foreach (Station station in vorschlag.StationList)
+                try
                 {
-                    if (!string.IsNullOrEmpty(station.Name))
-                    {
-                        Abfahrtvorschlag.Items.Add(station.Name);
-                    }
+                    Abfahrtvorschlag.Items.Clear();
+                    Stations vorschlag = transport.GetStations(AbfahrtSuche.Text);
 
+                    foreach (Station station in vorschlag.StationList)
+                    {
+                        if (!string.IsNullOrEmpty(station.Name))
+                        {
+                            Abfahrtvorschlag.Items.Add(station.Name);
+                        }
+
+                    }
+                }
+                catch (WebException)
+                {
+                    MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch
+                {
+                    MessageBox.Show("Konnte nicht gesucht werden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -136,19 +179,30 @@ namespace Transportapp
 
         private void ZielSuche_TextChanged(object sender, EventArgs e)
         {
-            netzwerktest();
+            
             if (!string.IsNullOrEmpty(ZielSuche.Text))
             {
-                Zielortvorschlag.Items.Clear();
-                Stations vorschlag = transport.GetStations(ZielSuche.Text);
-
-                foreach (Station station in vorschlag.StationList)
+                try
                 {
-                    if (!string.IsNullOrEmpty(station.Name))
-                    {
-                        Zielortvorschlag.Items.Add(station.Name);
-                    }
+                    Zielortvorschlag.Items.Clear();
+                    Stations vorschlag = transport.GetStations(ZielSuche.Text);
 
+                    foreach (Station station in vorschlag.StationList)
+                    {
+                        if (!string.IsNullOrEmpty(station.Name))
+                        {
+                            Zielortvorschlag.Items.Add(station.Name);
+                        }
+
+                    }
+                }
+                catch (WebException)
+                {
+                    MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                catch
+                {
+                    MessageBox.Show("Konnte nicht gesucht werden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }
@@ -161,7 +215,6 @@ namespace Transportapp
 
         private void StationSuchen_Click(object sender, EventArgs e)
         {
-            netzwerktest();
             try
             {
                 string statid = transport.GetStations(StationsSuche.Text).StationList[0].Id;
@@ -174,6 +227,10 @@ namespace Transportapp
 
                     Abfahrtstafel.Rows.Add(abfahrt, ziel);
                 }
+            }
+            catch (WebException)
+            {
+                MessageBox.Show("Bitte Netzwerkverbindung überprüfen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             catch 
             {
@@ -206,6 +263,11 @@ namespace Transportapp
             buttonToolTip.SetToolTip(Stationsvorschlage, "Hier werden Stationsvorschläge angezeigt");
 
 
+        }
+
+        private void neustartbtn_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }
